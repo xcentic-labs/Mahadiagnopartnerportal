@@ -3,7 +3,7 @@
 Web portal for partner hospitals. Replaces the `MahaDiagno-Partner` React Native app and uses the same backend APIs.
 
 ## Stack
-Vite + React 19, Tailwind CSS 4, React Router 7, axios, react-toastify, lucide-react, Leaflet (OpenStreetMap) for maps, socket.io-client for live tracking, Razorpay Checkout for subscriptions.
+Vite + React 19, Tailwind CSS 4, React Router 7, axios, react-toastify, lucide-react, Leaflet (OpenStreetMap) for maps, socket.io-client for live tracking, Razorpay Checkout for subscriptions (the key id is returned by the backend's create-order API).
 
 ## Setup
 ```bash
@@ -15,7 +15,6 @@ npm run dev
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `VITE_SERVER_URL` | `https://api.mahadiagno.com` | Backend root (API is `${VITE_SERVER_URL}/api/v1`) |
-| `VITE_RAZORPAY_KEY_ID` | test key used by the mobile app | Razorpay public key |
 
 ## Features (mobile app → web)
 | Mobile screen | Web route |

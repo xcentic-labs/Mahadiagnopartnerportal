@@ -6,7 +6,6 @@ import PageHeader from '../components/PageHeader'
 import { Loader, ErrorState, EmptyState } from '../components/States'
 import { usePartnerDetails } from '../hooks/usePartnerDetails'
 import api, { errorMessage } from '../utils/api'
-import { RAZORPAY_KEY_ID } from '../utils/config'
 import { loadRazorpay } from '../utils/razorpay'
 import { formatCurrency } from '../utils/format'
 import logo from '../assets/logo.png'
@@ -42,9 +41,11 @@ const Subscription = () => {
       if (!ready) throw new Error('Unable to load Razorpay. Check your internet connection.')
 
       const { data: order } = await api.post('/order/createorder', { amount: Math.round(Number(plan.price) * 100) })
+      // The Razorpay key id comes from the backend with the order
+      if (!order.key) throw new Error('Payment is not configured. Please try again later.')
 
       const rzp = new window.Razorpay({
-        key: RAZORPAY_KEY_ID,
+        key: order.key,
         amount: order.amount,
         currency: order.currency,
         order_id: order.id,
